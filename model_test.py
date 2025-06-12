@@ -7,6 +7,7 @@ import tensorflow as tf
 import mediapipe as mp
 from collections import deque
 import argparse
+import sys
 
 SEQ_LEN     = 64
 CHANNELS    = 543 * 3
@@ -202,6 +203,9 @@ def get_landmarks_or_zero(landmarks, count):
 
 # ─── Запускаем реальное время с камеры ────────────────────────────
 cap = cv2.VideoCapture(args.camera)
+if not cap.isOpened():
+    print(f"Error: Unable to open camera {args.camera}. Try a different --camera index.")
+    sys.exit(1)
 frame_id = 0
 
 last_label = ''
