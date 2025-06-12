@@ -22,7 +22,31 @@ Place the provided model weights `epoch-18_valAcc-0.735.h5` and the mapping file
 Make sure a webcam is connected. To start the real-time recognition demo, run:
 
 ```bash
-python model_test.py
+python model_test.py [--camera N]
 ```
 
+Use `--camera` to specify the camera index if your system has multiple cameras. For example, `--camera 1` may select the built‑in webcam on macOS when an iPhone is connected via Continuity Camera.
+
 A window will open showing the webcam feed with predicted labels displayed at the bottom of the frame.
+
+## Building a standalone app
+
+To package the demo as a single executable so it can run without Python installed, first install **PyInstaller**:
+
+```bash
+pip install pyinstaller
+```
+
+Run the helper script to build the app:
+
+```bash
+./build.sh
+```
+
+The executable will appear in the `dist/` folder. Launch it with an optional camera index just like the script:
+
+```bash
+./dist/model_test [--camera N]
+```
+
+If you make changes to the Python code or model files, simply run `./build.sh` again to produce an updated executable.
