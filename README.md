@@ -43,6 +43,9 @@ Run the helper script to build the app:
 ./build.sh
 ```
 
+The build script uses the `--collect-data mediapipe` flag so MediaPipe's
+resource files are bundled into the executable.
+
 The executable will appear in the `dist/` folder. Launch it with an optional camera index just like the script:
 
 ```bash
