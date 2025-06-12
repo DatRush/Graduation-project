@@ -39,9 +39,17 @@ pip install pyinstaller
 
 Run the helper script to build the app:
 
+On macOS or Linux:
 ```bash
 ./build.sh
 ```
+On Windows use the provided batch file (or run `bash build.sh` from Git Bash):
+```cmd
+build.bat
+```
+
+Make sure to run these commands from a terminal window rather than double-
+clicking the script file.
 
 The executable will appear in the `dist/` folder. Launch it with an optional camera index just like the script:
 
