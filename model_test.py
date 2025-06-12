@@ -7,7 +7,6 @@ import tensorflow as tf
 import mediapipe as mp
 from collections import deque
 import argparse
-import sys
 
 # ─── Глобальные константы ───────────────────────────────────────
 SEQ_LEN     = 64
@@ -24,6 +23,11 @@ parser = argparse.ArgumentParser(description='ASL recognition demo')
 parser.add_argument('--camera', type=int, default=0,
                     help='Index of the camera to use (default: 0)')
 args = parser.parse_args()
+
+# ─── Глобальные константы ───────────────────────────────────────
+SEQ_LEN     = 64
+CHANNELS    = 543 * 3
+PAD         = 0.0
 
 # ─── Загружаем словарь «жест→индекс» и инвертируем ──────────────
 with open('sign_to_prediction_index_map.json', 'r', encoding='utf-8') as f:
@@ -199,9 +203,6 @@ def get_landmarks_or_zero(landmarks, count):
 
 # ─── Запускаем реальное время с камеры ────────────────────────────
 cap = cv2.VideoCapture(args.camera)
-if not cap.isOpened():
-    print(f"Error: Unable to open camera {args.camera}. Try a different --camera index.")
-    sys.exit(1)
 frame_id = 0
 
 last_label = ''

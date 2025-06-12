@@ -37,7 +37,9 @@ To package the demo as a single executable so it can run without Python installe
 pip install pyinstaller
 ```
 
-Run the helper script to build the app:
+Run the helper script to build the app. It collects the TensorFlow and
+MediaPipe libraries so the executable works without additional DLLs:
+
 
 On macOS or Linux:
 ```bash
@@ -50,9 +52,6 @@ build.bat
 
 Make sure to run these commands from a terminal window rather than double-
 clicking the script file.
-
-The script uses `set -e` so the build will stop if PyInstaller encounters an
-error.
 
 The executable will appear in the `dist/` folder. Launch it with an optional camera index just like the script:
 
