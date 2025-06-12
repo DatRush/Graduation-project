@@ -8,6 +8,7 @@ import mediapipe as mp
 from collections import deque
 import argparse
 
+# ─── Глобальные константы ───────────────────────────────────────
 SEQ_LEN     = 64
 CHANNELS    = 543 * 3
 PAD         = 0.0

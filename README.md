@@ -40,6 +40,7 @@ pip install pyinstaller
 Run the helper script to build the app. It collects the TensorFlow and
 MediaPipe libraries so the executable works without additional DLLs:
 
+
 On macOS or Linux:
 ```bash
 ./build.sh
