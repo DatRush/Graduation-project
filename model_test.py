@@ -6,6 +6,7 @@ import numpy as np
 import tensorflow as tf
 import mediapipe as mp
 from collections import deque
+import argparse
 
 SEQ_LEN     = 64
 CHANNELS    = 543 * 3
@@ -15,6 +16,12 @@ NUM_CLASSES = 250
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # INFO и ниже скрыты
 logging.getLogger('absl').setLevel(logging.ERROR)
+
+# ─── Параметры командной строки ─────────────────────────────────
+parser = argparse.ArgumentParser(description='ASL recognition demo')
+parser.add_argument('--camera', type=int, default=0,
+                    help='Index of the camera to use (default: 0)')
+args = parser.parse_args()
 
 # ─── Глобальные константы ───────────────────────────────────────
 SEQ_LEN     = 64
@@ -194,7 +201,7 @@ def get_landmarks_or_zero(landmarks, count):
         return [[0.0, 0.0, 0.0]] * count
 
 # ─── Запускаем реальное время с камеры ────────────────────────────
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(args.camera)
 frame_id = 0
 
 last_label = ''
