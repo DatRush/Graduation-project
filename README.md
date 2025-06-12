@@ -43,6 +43,9 @@ Run the helper script to build the app:
 ./build.sh
 ```
 
+The script uses `set -e` so the build will stop if PyInstaller encounters an
+error.
+
 The executable will appear in the `dist/` folder. Launch it with an optional camera index just like the script:
 
 ```bash

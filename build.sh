@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 pyinstaller --onefile \
   --add-data "epoch-18_valAcc-0.735.h5:." \
