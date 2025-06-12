@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 import cv2
 import json
@@ -7,6 +8,8 @@ import tensorflow as tf
 import mediapipe as mp
 from collections import deque
 import argparse
+
+BASE_DIR = getattr(sys, "_MEIPASS", os.path.dirname(__file__))
 
 # ─── Глобальные константы ───────────────────────────────────────
 SEQ_LEN     = 64
@@ -30,7 +33,7 @@ CHANNELS    = 543 * 3
 PAD         = 0.0
 
 # ─── Загружаем словарь «жест→индекс» и инвертируем ──────────────
-with open('sign_to_prediction_index_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(BASE_DIR, 'sign_to_prediction_index_map.json'), 'r', encoding='utf-8') as f:
     sign2idx = json.load(f)
 inv_sign2idx = {v: k for k, v in sign2idx.items()}
 NUM_CLASSES = len(sign2idx)
@@ -188,7 +191,7 @@ def get_model(max_len=64, dropout_step=0, dim=192):
 
 
 model = get_model(max_len=64, dim=192)
-model.load_weights('epoch-18_valAcc-0.735.h5')
+model.load_weights(os.path.join(BASE_DIR, 'epoch-18_valAcc-0.735.h5'))
 
 # ─── MediaPipe и буфер последовательности ─────────────────────────
 mp_holistic = mp.solutions.holistic
